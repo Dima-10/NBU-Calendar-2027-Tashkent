@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Календарь НБУ 2027 - «Исследуя традиции»</title>
+  <meta name="description" content="Национальный костюм Бухары — проект «Культурное наследие Узбекистана» Национального банка Узбекистана.">
+  <meta name="theme-color" content="#274378">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Календарь НБУ 2027 - «Исследуя традиции»">
+  <meta property="og:description" content="Январь · Ташкент · Праздничный женский костюм.">
+  <meta property="og:image" content="assets/images/poster.webp">
+
+  <link rel="preload" href="assets/fonts/inter-400.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-600.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="assets/images/poster.webp" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Decided before first paint so the layout never jumps: .js = scripting on, .is-stage = scroll-driven video transition
+       (switched off for visitors who prefer reduced motion). Without JS the page falls back to a plain, readable layout. -->
+  <script>
+    (function (d) {
+      var c = d.className + ' js';
+      if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) c += ' is-stage';
+      d.className = c;
+    })(document.documentElement);
+  </script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#history">Перейти к содержанию</a>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="https://nbu.uz/ru" aria-label="Национальный банк Узбекистана">
+        <img class="brand__logo" src="assets/images/logo-nbu-gold.svg" alt="НБУ" width="96" height="28">
+      </a>
+      <span class="site-header__tag">Календарь НБУ 2027 - «Исследуя традиции»</span>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== 01 + 02 · ВИДЕО И СЖАТИЕ ПРИ ПРОКРУТКЕ ===== -->
+    <section class="stage" id="stage" aria-label="Видео: национальный костюм Бухары">
+      <div class="stage__sticky" id="sticky">
+
+        <div class="stage__window" id="window">
+          <!-- "controls" is a no-JS fallback; main.js removes it. -->
+          <video id="hero-video" class="stage__video"
+                 poster="assets/images/poster.webp"
+                 playsinline loop preload="metadata" controls
+                 aria-label="Видео: Праздничный женский костюм"
+                 data-focus-x="50" data-focus-y="40">
+            <source src="assets/video/uzbek-costume.mp4" type="video/mp4">
+            <p>Ваш браузер не поддерживает видео. <a href="assets/video/uzbek-costume.mp4">Скачать видео</a>.</p>
+          </video>
+        </div>
+
+        <button class="sound" id="sound-btn" type="button" hidden aria-label="Выключить звук">
+          <svg class="sound__on" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+            <path d="M16.2 8.6a4.8 4.8 0 0 1 0 6.8M18.8 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <svg class="sound__off" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+            <path d="M17 9.5l5 5M22 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Shown only if the browser blocks autoplay with sound. -->
+        <button class="gate" id="gate" type="button" hidden aria-label="Начать просмотр со звуком">
+          <span class="gate__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M8 5.5v13l11-6.5-11-6.5z" fill="currentColor"/></svg>
+          </span>
+          <span class="gate__title">Нажмите, чтобы начать</span>
+          <span class="gate__note">Видео воспроизводится со звуком</span>
+        </button>
+
+        <!-- ===== 03 · ВВЕДЕНИЕ ===== -->
+        <div class="intro" id="intro">
+          <div class="intro__inner">
+            <p class="eyebrow">Январь 2027</p>
+            <p class="chip">Ташкент · Праздничный женский костюм</p>
+            <h1>История костюма</h1>
+            <p class="lead">Праздничный женский костюм Ташкента конца XIX - начала XX века включал шёлковое платье, мурсак и ткани с национальными узорами. Образ дополняли вышивка, серебряные и позолоченные украшения, декорированные камнями и кораллами.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 04 · ИСТОРИЯ И КУЛЬТУРНОЕ НАСЛЕДИЕ ===== -->
+    <!-- <span class="ph"> - special maked text -->
+    <section class="section" id="history" aria-labelledby="history-title">
+      <div class="container split">
+        <header class="split__head reveal">
+          <!--<p class="eyebrow">Бухара · История</p>-->
+          <h2 id="history-title">Справочная информация</h2>
+        </header>
+
+        <div class="split__body">
+          <dl class="facts reveal">
+            <div class="facts__row">
+              <dt>Регион</dt>
+              <dd>Ташкент</dd>
+            </div>
+            <div class="facts__row">
+              <dt>Исторический период</dt>
+              <dd>Конец XIX - начало XX века <!--<span class="ph"></span>--></dd>
+            </div>
+            <div class="facts__row">
+              <dt>Консультант проекта</dt>
+              <dd>Узбекский учёный, доктор технических наук, профессор. Проректор Ташкентского института текстильной и лёгкой промышленности (ТИТЛП), вице-президент Парижской международной академии моды, председатель Ассоциации дизайнеров Узбекистана «Osiyo Ramzi»</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+
+  </main> 
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© АО «Национальный банк ВЭД РУ»</span>
+      <span><a href="https://nbu.uz/ru">nbu.uz</a></span>
+    </div>
+  </footer>
+</body>
+</html>
