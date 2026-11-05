@@ -153,7 +153,7 @@ a  { color: var(--nbu-blue); }
 .intro__inner .chip { margin-bottom: var(--s-1); }
 .intro__inner h1 { margin-top: var(--s-2); }
 .chip { display: inline-flex; align-items: center; padding: 5px 12px; border: 1px solid var(--nbu-gold); border-radius: 999px;
-  font-size: var(--fs-small); font-weight: 500; line-height: 1.4; color: var(--gold-ink); }
+  font-size: var(--fs-small); font-weight: 500; line-height: 1.4; color: var(--nbu-gold); }
 
 /* Sound control (44px touch target) */
 .sound { position: absolute; z-index: 6; right: var(--s-4);
