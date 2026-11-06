@@ -36,7 +36,7 @@
   --nbu-gold:   #B88F5A;   /* RGB 184-143-90 */
   --nbu-accent: #1FA9C5;   /* supplementary palette (focus rings, small accents only) */
 
-  --bg:          #2C2E32;
+  --bg:          #182330;  /*#2C2E32*/
   --bg-alt:      #F6F1E8;  /* light gold tint: allowed backdrop for the gold logo */
   --text:        #ffffff;  /* blue-tinted near-black */
   --text-muted:  #9BA3B1;
