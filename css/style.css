@@ -220,7 +220,7 @@ a  { color: var(--nbu-blue); }
 .section__head .eyebrow, .split__head .eyebrow { margin-bottom: var(--s-3); }
 
 /* 04 · history */
-.split { display: grid; gap: var(--s-7); }
+.split { display: grid; gap: var(--s-6); }
 .split__head { align-self: start; }
 @media (min-width: 900px) {
   .split { grid-template-columns: 5fr 7fr; gap: var(--s-9); }
