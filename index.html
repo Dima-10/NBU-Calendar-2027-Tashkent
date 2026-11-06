@@ -78,6 +78,15 @@
           <span class="gate__note">Видео воспроизводится со звуком</span>
         </button>
 
+        <!-- Scroll hint: decorative overlay, revealed by js/main.js 3 s after playback starts, hidden as soon as the page scrolls.
+             Not interactive (pointer-events: none). The chevron is a single decorative SVG path. -->
+        <div class="scroll-hint" id="scroll-hint">
+          <span class="scroll-hint__text">Прокрутите вниз</span>
+          <svg class="scroll-hint__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 9.5l6 6 6-6"/>
+          </svg>
+        </div>
+
         <!-- ===== 03 · ВВЕДЕНИЕ ===== -->
         <div class="intro" id="intro">
           <div class="intro__inner">

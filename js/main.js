@@ -89,6 +89,7 @@
     if (CONFIG.hideSoundControlIfSilent) {
       setTimeout(function () { if (knownSilent()) soundBtn.hidden = true; }, 1200);
     }
+    hintPlaying = true; evaluateHint();   // scroll hint: arm its timer only once playback has really started
   });
   video.addEventListener('volumechange', setSoundUi);
 
@@ -120,6 +121,51 @@
   video.addEventListener('error', function () {      // missing/broken file: leave the poster, no dead UI
     hideGate(); soundBtn.hidden = true;
   });
+
+  /* ======================================================================
+     1b. SCROLL HINT  («Прокрутите вниз» + one bouncing chevron)
+     Shown HINT_DELAY ms after the video has really started playing, and only
+     while the page is at the very top. Hidden at once when the page starts to
+     move, or when playback stops / the gate is up. Scroll state comes from
+     update() below (setHintAtTop) — there is no second scroll listener.
+     One timer id (hintTimer) guarantees there are never parallel timers.
+     ====================================================================== */
+  var hint = $('scroll-hint');
+  var HINT_DELAY = 3000;
+  var hintPlaying = false;    // true after the 'playing' event, false on pause / error
+  var hintAtTop = true;       // fed by update()
+  var hintTimer = 0;          // the single pending timer (0 = none)
+  var hintShown = false;
+
+  function hintAllowed() {
+    return !!hint && hintPlaying && hintAtTop && !gateShown && !document.hidden && !video.paused;
+  }
+  function clearHintTimer() {
+    if (hintTimer) { clearTimeout(hintTimer); hintTimer = 0; }
+  }
+  function setHintVisible(on) {
+    if (hintShown === on) return;
+    hintShown = on;
+    hint.classList.toggle('is-visible', on);
+  }
+  function evaluateHint() {
+    if (!hint) return;
+    if (!hintAllowed()) { clearHintTimer(); setHintVisible(false); return; }
+    if (hintShown || hintTimer) return;               // already visible, or already counting down
+    hintTimer = setTimeout(function () {
+      hintTimer = 0;
+      if (hintAllowed()) setHintVisible(true);
+    }, HINT_DELAY);
+  }
+  function setHintAtTop(atTop) {
+    if (hintAtTop === atTop) return;
+    hintAtTop = atTop;
+    evaluateHint();
+  }
+  ['pause', 'error', 'emptied'].forEach(function (name) {
+    video.addEventListener(name, function () { hintPlaying = false; evaluateHint(); });
+  });
+  document.addEventListener('visibilitychange', evaluateHint);
 
   start();                                            // attempt 1: with sound
 
@@ -186,11 +232,14 @@
 
   function update() {
     ticking = false;
+    // Reduced-motion / baseline layout has no stage progress, so fall back to the page offset for the scroll hint.
+    if (!stageActive()) setHintAtTop((window.pageYOffset || 0) <= 0);
     if (!geo) return;
     var rect = stage.getBoundingClientRect();
     var dist = Math.max(1, rect.height - geo.vh);
     var raw = clamp(-rect.top / dist, 0, 1);
     var q = clamp(raw / CONFIG.shrinkShare, 0, 1);
+    if (stageActive()) setHintAtTop(q === 0);          // scroll hint: any movement away from the top hides it
     var key = q.toFixed(4);
     if (key === lastKey) return;                  // nothing changed (hold phase / stage off-screen)
     lastKey = key;
